@@ -60,6 +60,7 @@ function buttonPress(button) {
             memory = output;
         }
         document.getElementById(operator).style.backgroundColor=buttonColor;
+        cache = memory;
     }
     //switch statement for the operators
     switch ( button ) {
@@ -100,4 +101,10 @@ function buttonPress(button) {
             document.getElementById('minus').style.backgroundColor=buttonColor;
             break;
     };
+
+
+    //asks if you are sure you want to leave the page
+    addEventListener('beforeunload', (event) => {
+        event.preventDefault();
+    })
 }
