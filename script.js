@@ -1,6 +1,6 @@
 let buttonColor = 'azure'
-let buttonPressedColor = '#911'
-
+let buttonPressedColor = '#00bbd1'
+let output = 0;
 let cache = 0;
 let memory = 0;
 let operator = "";
@@ -41,7 +41,7 @@ function buttonPress(button) {
     }
 
     else if ( button == 'equals') {
-        let output = 0;
+         output = 0;
         if ( operator == 'plus') {
             output = cache + memory;
             doc.textContent = output;
@@ -60,51 +60,100 @@ function buttonPress(button) {
             memory = output;
         }
         document.getElementById(operator).style.backgroundColor=buttonColor;
-        cache = memory;
+        memory = output;
     }
     //switch statement for the operators
     switch ( button ) {
+        
         case "plus":
+
+            if (output == 0) {
+                
             memory = cache;
+
+            } else {
+
+                output = cache;
+
+            }
+
             cache=0;
             operator = button;
+
             document.getElementById('plus').style.backgroundColor=buttonPressedColor;
             document.getElementById('minus').style.backgroundColor=buttonColor;
             document.getElementById('multiply').style.backgroundColor=buttonColor;
             document.getElementById('divide').style.backgroundColor=buttonColor;
             break;
         case 'minus':
+
+            if (output == 0) {
+                
             memory = cache;
+
+            } else {
+
+                output = cache;
+
+            }
+
             cache = 0;
             operator = button;
+
             document.getElementById('minus').style.backgroundColor=buttonPressedColor;
             document.getElementById('plus').style.backgroundColor=buttonColor;
             document.getElementById('multiply').style.backgroundColor=buttonColor;
             document.getElementById('divide').style.backgroundColor=buttonColor;
             break;
         case "multiply": 
+
+        if (output == 0) {
+                
             memory = cache;
+
+            } else {
+
+                output = cache;
+
+            }
+
             cache = 0;
             operator = button;
+
             document.getElementById('multiply').style.backgroundColor=buttonPressedColor;
             document.getElementById('plus').style.backgroundColor=buttonColor;
             document.getElementById('minus').style.backgroundColor=buttonColor;
             document.getElementById('divide').style.backgroundColor=buttonColor;
             break;
         case "divide":
+
+            if (output == 0) {
+                
             memory = cache;
+
+            } else {
+
+                output = cache;
+
+            }
+
             cache = 0;
             operator = button;
+
             document.getElementById('divide').style.backgroundColor=buttonPressedColor;
             document.getElementById('plus').style.backgroundColor=buttonColor;
             document.getElementById('multiply').style.backgroundColor=buttonColor;
             document.getElementById('minus').style.backgroundColor=buttonColor;
             break;
     };
+}
+    //add keyboard functionality to calculator
+    window.addEventListener('keydown', (event) => {
+        buttonPress(event.key);
+    });
 
 
     //asks if you are sure you want to leave the page
     addEventListener('beforeunload', (event) => {
         event.preventDefault();
-    })
-}
+    });
